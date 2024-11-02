@@ -8,5 +8,6 @@ namespace HandBook.Classes
 {
     internal class HandBook
     {
+        public Car[] carsList { get; set; }
     }
 }
