@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace HandBook.Classes
 {
-    internal class HandBook
+    internal class handBook
     {
-        public Car[] carsList { get; set; }
+        static public List<Car> carsList { get; set; } = new List<Car>();
+        static public List<PasportsData> pasportsData { get; set; } = new List<PasportsData>();
     }
 }
