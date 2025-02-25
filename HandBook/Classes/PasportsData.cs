@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -7,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace HandBook.Classes
 {
-    internal class PasportsData
+    public class PasportsData
     {
-        private string fio { get; set; }
-        private string birthDate { get; set; }
-        private string series { get; set; }
-        private string number { get; set; }
-        private string issueDate { get; set; }
-        public string issuedBy { get; set; }
+        private string fio = null!;
+        private string birthDate = null!    ;
+        private string series = null!;
+        private string number = null!;
+        private string issueDate = null!;
+        private string issuedBy = null!;
 
-        //descriptors
+        [Required]
         public string FIO
         {
             get { return fio; }
@@ -34,6 +35,7 @@ namespace HandBook.Classes
             }
         }
 
+        [Required]
         public string BirthDate
         {
             get { return birthDate; }
@@ -50,6 +52,7 @@ namespace HandBook.Classes
             }
         }
 
+        [Required]
         public string Series
         {
             get { return series; }
@@ -100,7 +103,18 @@ namespace HandBook.Classes
             }
         }
 
-        // Constructors
+        public string IssuedBy
+        {
+            get { return issuedBy; }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new FormatException("Поле 'Кем выдан' не должно быть пустым.");
+                issuedBy = value;
+            }
+        }
+
+        // Обновлённый конструктор
         public PasportsData(string fio, string birthDate, string series, string number, string issueDate, string issuedBy)
         {
             FIO = fio;
@@ -108,7 +122,12 @@ namespace HandBook.Classes
             Series = series;
             Number = number;
             IssueDate = issueDate;
-            this.issuedBy = issuedBy;
+            IssuedBy = issuedBy;
+        }
+
+        public PasportsData()
+        {
+
         }
 
         // Methods
@@ -121,6 +140,5 @@ namespace HandBook.Classes
                    $"{"Дата выдачи:",-30} {IssueDate}\n" +
                    $"{"Кем выдан:",-30} {issuedBy}";
         }
-
     }
 }
